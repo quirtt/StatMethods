@@ -1,0 +1,52 @@
+---
+title: "Assignment - 2"
+format: html
+editor: visual
+---
+
+# Probit Analysis
+
+```{R}
+# probit.R
+Table1 = read.table('probit.txt', head=T)
+dead = Table1[,3]
+prob = dead/100
+print(prob)
+probit = qnorm(prob)
+
+plot(probit)
+```
+
+qnorm is the inverse of the cumulative distributive function. We expected a linear-ish graph and that is exactly what we get!
+
+# Prussian Horse Kick Analysis
+
+```{r}
+#Input
+prusHorse = read.csv("prussian_kick.csv", head=T)
+
+#table, freqTable and freqDensTable
+death = prusHorse[,3]
+freqTable = as.vector(as.matrix(table(death)))
+freqTable = append(freqTable, numeric(5))
+print(freqTable)
+freqDensTable = freqTable/sum(freqTable)
+barplot(freqDensTable, col='steelblue')
+
+#fit
+library(MASS)
+fitdistr(death, "poisson")
+# lambda = 0.70
+
+curve(exp(-0.7)*(0.7)^x/factorial(x), from=-1, to=10, add=T, col='red')
+
+
+```
+
+I fought with this assignment for quite sometime trying to plot
+the poisson distribution with dpois - figured that dpois doesnt accept non
+integer values. had to plot it with the curve function!
+
+I first got the raw-death-data and then calculated the frequency and frequency density tables. I then plotted the barplot of frequency density of the data. I found the lambda of the poisson distribution that fits the data. I then plotted the curve with the `curve` function.
+
+This was fun!

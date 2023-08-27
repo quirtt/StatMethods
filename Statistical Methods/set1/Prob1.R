@@ -1,0 +1,6 @@
+cointoss = sample(c("heads", "tails")=="heads", 1000, replace=TRUE, prob=c(0.7, 0.3))
+sumCointoss = cumsum(cointoss)/(1:1000)
+plot(1:1000, sumCointoss, type='line', col='blue')
+cointoss = sample(c("heads", "tails")=="heads", 1000, replace=TRUE, prob=c(0.7, 0.3))
+sumCointoss = cumsum(cointoss)/(1:1000)
+lines(1:1000, sumCointoss, col='red')
